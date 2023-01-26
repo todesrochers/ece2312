@@ -1,0 +1,26 @@
+function [plotAudio] = collectAudio(info, recObj, recDuration, y)
+
+%gathering device audio inputs and ID
+info = audiodevinfo;
+info.input(1)
+info.input(2)
+
+%setting up audio recorder 
+%sample code: recorder = audiorecorder(Fs,nBits,nChannels,ID)
+recObj = audiorecorder;
+recObj = audiorecorder(44100,8,2,1);
+
+%record speech
+recDuration = 10;
+disp("Start speaking")
+recordblocking(recObj, recDuration);
+disp("Stop speaking")
+
+%store data in array
+y = getaudiodata(recObj);
+
+%plot data
+plotAudio = plot(y);
+xlabel('Time(s)'); ylabel('Frequency (Hz)'); box('off'); 
+end
+
