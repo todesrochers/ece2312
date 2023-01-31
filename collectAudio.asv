@@ -5,29 +5,23 @@ info = audiodevinfo;
 info.input(1)
 info.input(2)
 
-%Sampling Rate
-fs = 44100
-
 %setting up audio recorder 
 %sample code: recorder = audiorecorder(Fs,nBits,nChannels,ID)
 recObj = audiorecorder;
-recObj = audiorecorder(fs,8,2,1);
+recObj = audiorecorder(44100,8,2,1);
 
 %record speech
-recDuration = 5;
+recDuration = 10;
 disp("Start speaking")
 recordblocking(recObj, recDuration);
 disp("Stop speaking")
 
 %store data in array
 y = getaudiodata(recObj);
-length(y)
-x = (1:recDuration*fs);
-x= x/fs;
-length(x)
+x = 
 
 %plot data
-plotAudio = plot(x, y);
-xlabel('Time(s)'); ylabel('Amplitude'); box('off'); 
+plotAudio = plot(y);
+xlabel('Time(s)'); ylabel('Frequency (Hz)'); box('off'); 
 end
 

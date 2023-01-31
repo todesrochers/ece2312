@@ -1,0 +1,6 @@
+function [] = FunWithSpeech(y, fs, Z)
+[y,fs] = audioread('Project1WAV.wav');
+Z = zeros(44100,1);
+NewMatrix = horzcat(READ, Z)
+end
+

@@ -1,10 +1,12 @@
-function [] = plotSpect(info, recObj, recDuration, y, window, N_overlap, fs);
+function [] = WAVSAVE(info, recObj, recDuration, y,fs)
 
+%gathering device audio inputs and ID
 info = audiodevinfo;
-info.input(1);
-info.input(2);
+info.input(1)
+info.input(2)
 
-fs = 8000;
+%Sampling Rate
+fs = 44100
 
 %setting up audio recorder 
 %sample code: recorder = audiorecorder(Fs,nBits,nChannels,ID)
@@ -19,10 +21,27 @@ disp("Stop speaking")
 
 %store data in array
 y = getaudiodata(recObj);
+length(y)
+x = (1:recDuration*fs);
+x= x/fs;
+length(x)
 
-%setting up audio recorder 
-recObj = audiorecorder;
-recObj = audiorecorder(fs*2,8,2,1);
+%saving to WAV file
+audiowrite("Project1WAV.wav", y, fs);
+clear y fs;
+audioinfo("Project1WAV.wav")
+[y,fs] = audioread('Project1WAV.wav');
+
+%used to prove file is being saved
+sound(y,fs)
+
+x = (1:recDuration*fs);
+x= x/fs;
+plot(x,y)
+xlabel('Time(s)');
+ylabel('Ampltiude');
+
+%spectogram
 y1 = y(:,1);
 
 %sample code from project description
@@ -39,6 +58,5 @@ colormap(jet);
 set(gca,'clim', [-80,-20]);
 ylim([0 8000]);
 xlabel('Time (s)'); ylabel('Frequency (Hz)');
-
 end
 
