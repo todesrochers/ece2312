@@ -6,7 +6,7 @@ zero_vec = zeros(length(y1),1);
 NewOutput = cat(2,y1,zero_vec);
 
 %saving to WAV file
-audiowrite("NewOutput.wav", NewOutput, fs);
+audiowrite("Team[3]-stereosoundfile.wav", NewOutput, fs);
 
 sound(NewOutput,fs)
 end
